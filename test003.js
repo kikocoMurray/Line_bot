@@ -1,1 +1,0 @@
-const lalamove = 'hello is me'
