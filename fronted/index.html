@@ -10,10 +10,9 @@
     <button id="btn" onclick="handlerClick()">Click Me</button>
 </body>
 <script src='./initWs.js'></script>
-<script src='./heartbeat.js'></script>
 <script>
     function handlerClick() {
-        window.ws.send('hello')
+        console.log(window.ws)
     }
 </script>
 </html>
