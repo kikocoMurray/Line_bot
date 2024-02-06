@@ -1,0 +1,12 @@
+{
+  "name": "WebSocketTest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:kikocoMurray/WebSocketTest.git",
+  "author": "Murray Chen <murray.chen@neutec.com.tw>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.16.0"
+  }
+}
