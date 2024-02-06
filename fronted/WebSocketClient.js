@@ -1,3 +1,5 @@
+import { handleMessage } from "./services/response.js";
+
 const WEBSOCKET_STATUS = Object.freeze({
   CONNECTING: 0,
   OPEN: 1,
@@ -18,34 +20,30 @@ export default class WebSocketClient {
     this.ws.onopen = () => {
       console.log("open connection");
       this.startHeartbeat();
-      window.ws = this;
     };
 
     this.ws.onclose = () => {
       console.log("close connection");
       this.stopHeartbeat();
-      window.ws = undefined;
     };
 
     this.ws.onerror = () => {
       console.log("error connection");
-      window.ws = undefined;
     };
 
-    this.ws.onmessage = (event) => {
-      this.handleMessage(event);
-    };
+    this.ws.onmessage = (event) => handleMessage(event);
+
+    window.ws = this;
   }
 
   restart() {
-    if (this.ws) {
-      this.ws.close();
-    }
+    this.stop();
     this.start();
   }
 
   stop() {
     if (this.ws) {
+      window.ws = undefined;
       this.ws.close();
     }
   }
@@ -70,20 +68,6 @@ export default class WebSocketClient {
     if (this.timer !== null) {
       clearInterval(this.timer);
       this.timer = null; // 將計時器設置為 null
-    }
-
-    console.log(this.timer);
-  }
-
-  handleMessage(event) {
-    const message = JSON.parse(event.data);
-
-    switch (message.router) {
-      case "heartbeat": {
-        console.log(message);
-        break;
-      }
-      // Add more cases for different message types if needed
     }
   }
 }
