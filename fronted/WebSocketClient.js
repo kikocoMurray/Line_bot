@@ -14,7 +14,7 @@ export default class WebSocketClient {
     this.timer = null;
   }
 
-  start() {
+  connect() {
     this.ws = new WebSocket(this.url);
 
     this.ws.onopen = () => {
@@ -32,27 +32,27 @@ export default class WebSocketClient {
     };
 
     this.ws.onmessage = (event) => handleMessage(event);
-
-    window.ws = this;
   }
 
-  restart() {
-    this.stop();
-    this.start();
+  reconnect() {
+    this.disconnect();
+    this.connect();
   }
 
-  stop() {
+  disconnect() {
     if (this.ws) {
-      window.ws = undefined;
       this.ws.close();
     }
   }
 
   send(message) {
-    console.log("1");
-    const msg = JSON.stringify(message);
+    if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+      const msg = JSON.stringify(message);
 
-    this.ws.send(msg);
+      this.ws.send(msg);
+    } else {
+      console.error("WebSocket is not open.");
+    }
   }
 
   startHeartbeat() {
