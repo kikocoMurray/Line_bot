@@ -9,10 +9,10 @@
     <h1>Hello World</h1>
     <button id="btn" onclick="handlerClick()">Click Me</button>
 </body>
-<script src='./initWs.js'></script>
+<script type="module" src='./initWs.js'></script>
 <script>
     function handlerClick() {
-        console.log(window.ws)
+        window.ws.send('Hello World');
     }
 </script>
 </html>
