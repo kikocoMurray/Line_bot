@@ -4,6 +4,7 @@ export const handleMessage = (event) => {
   const callback = {
     heartbeat: () => {
       console.log(message);
+      //
     },
     // Add more cases for different message types if needed
   };

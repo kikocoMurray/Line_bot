@@ -10,9 +10,12 @@
     <button id="btn" onclick="handlerClick()">Click Me</button>
 </body>
 <script type="module" src='./initWs.js'></script>
-<script>
-    function handlerClick() {
-        window.ws.send('Hello World');
+<script type="module" >
+    import { handleClickServices } from './services/handler.js'
+
+
+    window.handlerClick = ()=> {
+        handleClickServices()
     }
 </script>
 </html>
