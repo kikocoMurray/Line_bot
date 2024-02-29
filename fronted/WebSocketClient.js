@@ -1,4 +1,4 @@
-import { handleMessage } from "./services/response.js";
+import { handleMessage } from "./services/webSocket.js";
 
 const WEBSOCKET_STATUS = Object.freeze({
   CONNECTING: 0,

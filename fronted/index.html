@@ -13,9 +13,9 @@
 <script type="module" >
     import { handleClickServices } from './services/handler.js'
 
-
+    const {message}  = handleClickServices
     window.handlerClick = ()=> {
-        handleClickServices()
+        send(message)
     }
 </script>
 </html>
